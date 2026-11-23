@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mesés önuralom — a teljes koncepció</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --page:#e7ddcb; --len:#f4ecdd; --surface:#fffaf1; --tinta:#3b2a33; --muted:#7c6a6f; --line:#e6d8c2;
+    --rozsa:#c62d3f; --rozsa-sotet:#8f1d31; --zold:#3b9655; --sarga:#f2b40a; --honey:#f0962a;
+    --ej1:#1b1640; --ej2:#3a2a61; --ej3:#5a3f7a;
+    --shadow:0 22px 52px -32px rgba(59,42,51,.5);
+    color-scheme:light;
+    box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--page);color:var(--tinta);font-family:"Nunito",system-ui,sans-serif;line-height:1.6;padding:clamp(14px,4vw,40px) 0}
+  .wrap{max-width:760px;margin:0 auto;padding:0 clamp(16px,4vw,28px)}
+  h1{font-size:clamp(1.6rem,5vw,2.4rem);font-weight:800;margin:0;color:var(--rozsa-sotet);line-height:1.12}
+  .intro{color:var(--muted);margin:12px 0 0;font-size:clamp(1rem,2.6vw,1.12rem)}
+  .eyebrow{font-weight:800;letter-spacing:.18em;text-transform:uppercase;font-size:.72rem;color:var(--rozsa-sotet)}
+  .kcard{background:var(--surface);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:clamp(16px,4vw,26px);margin-top:26px}
+  .khead{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .stepnum{font-weight:800;color:var(--rozsa);font-size:.95rem}
+  .dots{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+  .dots button{width:10px;height:10px;border-radius:50%;border:none;background:var(--line);cursor:pointer;padding:0}
+  .dots button.on{background:var(--rozsa)}
+  .stage-row{display:flex;align-items:center;gap:clamp(6px,2vw,12px)}
+  .arrow{flex:none;width:clamp(38px,10vw,48px);height:clamp(38px,10vw,48px);border-radius:50%;border:1.5px solid var(--line);background:var(--surface);color:var(--rozsa-sotet);cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .arrow svg{width:22px;height:22px}
+  .arrow:disabled{opacity:.3;cursor:default}
+  .arrow:hover:not(:disabled){border-color:var(--rozsa);color:var(--rozsa)}
+  .screen{position:relative;flex:1;min-width:0;aspect-ratio:16/10;border-radius:16px;overflow:hidden;
+    background:radial-gradient(120% 120% at 50% 15%,var(--ej3),var(--ej2) 55%,var(--ej1));
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:18px;color:#fdf6ea}
+  .scr-stars{display:flex;gap:14px;min-height:4px}
+  .scr-stars svg{width:clamp(28px,7vw,44px);height:clamp(28px,7vw,44px);transition:opacity .5s,transform .5s}
+  .scr-stars svg.dim{opacity:.22;transform:scale(.82)}
+  .scr-cap{font-weight:700;font-size:clamp(1.05rem,3.8vw,1.45rem)}
+  .scr-sub{font-size:clamp(.82rem,3vw,1rem);color:#e3dcf1}
+  .scr-choice{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+  .chip{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:8px 15px;font-size:.92rem}
+  .opt{border-radius:20px;padding:16px 22px;border:2px solid transparent;display:flex;align-items:center;justify-content:center}
+  .opt svg{width:clamp(54px,15vw,82px);height:clamp(54px,15vw,82px)}
+  .opt.heart{background:rgba(232,99,122,.18);border-color:#e8637a}
+  .opt.mind{background:rgba(63,157,141,.18);border-color:#3f9d8d}
+  .mesecard{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.28);border-radius:14px;padding:14px 20px;font-weight:700}
+  .mesecard small{font-weight:400;color:#ffd98a}
+  .scr-btn{appearance:none;border:none;cursor:pointer;font-family:inherit;font-weight:800;font-size:1.05rem;color:#5a3a07;background:var(--honey);padding:16px 26px;border-radius:999px;display:inline-flex;align-items:center;gap:10px;box-shadow:0 10px 26px -8px rgba(240,150,42,.8);animation:pulse 1.4s ease-in-out infinite}
+  .scr-btn svg{width:1.2em;height:1.2em}
+  .scr-btn[hidden]{display:none}
+  @keyframes pulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(240,150,42,.55),0 10px 26px -8px rgba(240,150,42,.85)}50%{transform:scale(1.06);box-shadow:0 0 0 15px rgba(240,150,42,0),0 10px 26px -8px rgba(240,150,42,.85)}}
+  .scr-reward .rw{font-weight:800;font-size:clamp(1.2rem,4.4vw,1.7rem)}
+  .scr-reward .rw2{margin-top:6px;color:#e3dcf1}
+  .exp{margin-top:18px}
+  .exp h3{font-size:1.15rem;margin:0 0 10px;color:var(--tinta)}
+  .exp .block{display:flex;gap:12px;align-items:flex-start;padding:9px 0;border-top:1px dashed var(--line)}
+  .exp .block:first-of-type{border-top:0}
+  .exp .lab{flex:none;width:120px;font-weight:800;font-size:.8rem;padding-top:2px}
+  .exp .lab.l1{color:var(--muted)} .exp .lab.l2{color:var(--rozsa-sotet)} .exp .lab.l3{color:var(--zold)}
+  .exp .block p{margin:0;font-size:.97rem}
+  @media(max-width:520px){.exp .block{flex-direction:column;gap:2px}.exp .lab{width:auto}}
+  @media(prefers-reduced-motion:reduce){.scr-btn{animation:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">Mesés önuralom</p>
+  <h1>A teljes koncepció — lépésről lépésre</h1>
+  <p class="intro">Nézd végig, hogyan működik az egész: mi történik minden lépésben, mi a kihívás, és mi rá az elméleti megoldás. Lapozz a nyilakkal; a legvégén a gyerek egy gombbal zárja le a mesét.</p>
+  <div class="kcard">
+    <div class="khead">
+      <span class="stepnum" id="stepnum">1 / 8</span>
+      <div class="dots" id="dots"></div>
+    </div>
+    <div class="stage-row">
+      <button class="arrow" id="prev" type="button" aria-label="Vissza"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <div class="screen" id="screen">
+        <div class="scr-stars" id="scrStars"></div>
+        <div class="scr-cap" id="scrCap"></div>
+        <div class="scr-sub" id="scrSub"></div>
+        <div class="scr-choice" id="scrChoice"></div>
+        <button class="scr-btn" id="scrBtn" type="button" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 3v9"/><path d="M6.5 7a8 8 0 1 0 11 0"/></svg>Nyomd meg!</button>
+        <div class="scr-reward" id="scrReward" hidden></div>
+      </div>
+      <button class="arrow" id="next" type="button" aria-label="Tovább"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+    <div class="exp">
+      <h3 id="expTitle"></h3>
+      <div class="block"><span class="lab l1">Mi történik</span><p id="expWhat"></p></div>
+      <div class="block"><span class="lab l2">Kihívás</span><p id="expChall"></p></div>
+      <div class="block"><span class="lab l3">Elméleti megoldás</span><p id="expSol"></p></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var STAR='<svg viewBox="0 0 48 48"><path d="M24 3 L29 18 L45 18 L32 28 L37 44 L24 34 L11 44 L16 28 L3 18 L19 18 Z" fill="#f0962a"/></svg>';
+  var STEPS=[
+    {cap:"Ki néz most?",choice:'<span class="chip">👦 Bence · 2 év</span><span class="chip">👧 Lilla · 4 év</span><span class="chip">👨‍👩‍👧 Mindketten nézik</span>',stars:-1,
+     title:"1. Ki néz most?",what:"A szülő kiválasztja, ki néz: egy gyerek, vagy ha többen ülnek le, hogy mindenki nézi.",ch:"Menet közben, gyorsan kell dönteni — és ha többen néznek, több korhoz és igényhez kell igazodni.",sol:"Egyetlen koppintás. Többen nézésnél a rendszer a közös nevezőt keresi (legszigorúbb korhatár + közös szív/ész) — ezt külön ki kell dolgozni."},
+    {cap:"Szív vagy ész?",choice:'<span class="opt heart"><svg viewBox="0 0 48 48"><path d="M24 43C9 32 4 25 4 17A10.5 10.5 0 0 1 24 11A10.5 10.5 0 0 1 44 17C44 25 39 32 24 43Z" fill="#e8637a"/><path d="M13 17a7 7 0 0 1 7-6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" opacity=".45"/></svg></span><span class="opt mind"><svg viewBox="0 0 48 48" fill="rgba(63,157,141,.16)" stroke="#3f9d8d" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10a5 5 0 0 0-8 3 5 5 0 0 0-4 7 5 5 0 0 0 1 8 5 5 0 0 0 7 4 4 4 0 0 0 4 2V10Z"/><path d="M26 10a5 5 0 0 1 8 3 5 5 0 0 1 4 7 5 5 0 0 1-1 8 5 5 0 0 1-7 4 4 4 0 0 1-4 2V10Z"/><path d="M17 17c2 0 3 2 3 4M31 17c-2 0-3 2-3 4M17 28c2 0 4 1 4 3M31 28c-2 0-4 1-4 3" fill="none"/></svg></span>',stars:-1,
+     title:"2. Szív vagy ész?",what:"A szülő eldönti, mire van most szüksége a gyereknek.",ch:"Absztrakt műfaji kategóriát (kaland, oktató) nehéz választani.",sol:"Egy kérdés, amit a szülő tud: most az együttérzésre vagy a gondolkodásra van szükség?"},
+    {cap:"Ajánlott mese",choice:'<div class="mesecard">Egy kedves mese<br><small>★ ★ ★ · rövid</small></div>',stars:-1,
+     title:"3. Korhoz illő mese",what:"A rendszer a korhoz és a választáshoz illő mesét kínálja, jó hosszban.",ch:"Mi való épp 0–3-nak, és meddig? Ha többen néznek, egyszerre több kornak kell megfelelni.",sol:"Kor-első szűrés és emberi besorolás; több gyereknél a legfiatalabbhoz igazított, de a nagyobbaknak is élvezhető mese — a besorolás egyik legnehezebb feladata."},
+    {cap:"Két mese, aztán fürdés",stars:3,
+     title:"4. Felkészítés",what:"A gyerek megtudja, meddig tart, és mi jön utána.",ch:"A kicsik nem értik a perceket.",sol:"Az idő nem szám, hanem fogyó csillagok — látható és konkrét."},
+    {cap:"Megy a mese…",stars:2,
+     title:"5. Visszaszámlálás",what:"A mese megy, a csillagok egyesével elalszanak.",ch:"A képernyőidő észrevétlenül elnyúlik.",sol:"Látható, kiszámítható fogyás — a vég előre látszik."},
+    {cap:"Nemsokára vége…",stars:1,
+     title:"6. Nemsokára vége",what:"Finom, nyugodt jelzés a vég közeledtével.",ch:"A hirtelen megszakítás sokk, és dackonfliktust szül.",sol:"Előre jelzett vég, mindig epizódhatárhoz igazítva."},
+    {cap:"Elfogytak a csillagok",sub:"Most te zárod le a mesét.",stars:0,
+     title:"7. A gyerek zárja le",what:"A mesét a gyerek maga zárja le — TV-n egy nagy gombbal, tableten a képernyőn.",ch:"A kikapcsolás a szülő–gyerek harc forrása.",sol:"A gyereké a döntés: a „velem történik” élményből „én csinálom” lesz."},
+    {cap:"",stars:0,button:true,reward:'<div class="rw">Szép volt! 🌟</div><div class="rw2">Jó éjt 🌙 · most jöhet a fürdés</div>',
+     title:"8. Jó éjt — a lezárás",what:"A gyerek megnyomja a gombot, kis nyugtató elismerést kap, és a rituálé átvezet a következő lépéshez.",ch:"Egy izgató jutalom felpörget lefekvés előtt; a hirtelen vég űrt hagy.",sol:"Meleg, csendes lezárás; a jutalom a leállásért jár. A vég hidat képez — nincs „következő rész”, nincs automatikus lejátszás."}
+  ];
+  var cur=0;
+  var scrStars=document.getElementById("scrStars"),scrCap=document.getElementById("scrCap"),scrSub=document.getElementById("scrSub"),
+      scrChoice=document.getElementById("scrChoice"),scrBtn=document.getElementById("scrBtn"),scrReward=document.getElementById("scrReward"),
+      stepnum=document.getElementById("stepnum"),dotsBox=document.getElementById("dots"),
+      expTitle=document.getElementById("expTitle"),expWhat=document.getElementById("expWhat"),expChall=document.getElementById("expChall"),expSol=document.getElementById("expSol"),
+      prev=document.getElementById("prev"),next=document.getElementById("next");
+  for(var k=0;k<3;k++){var d=document.createElement("div");d.innerHTML=STAR;scrStars.appendChild(d.firstChild);}
+  var starEls=[].slice.call(scrStars.querySelectorAll("svg"));
+  STEPS.forEach(function(_,i){var b=document.createElement("button");b.type="button";b.setAttribute("aria-label","Lépés "+(i+1));b.addEventListener("click",function(){goto(i);});dotsBox.appendChild(b);});
+  var dotBtns=[].slice.call(dotsBox.querySelectorAll("button"));
+  function setStars(n){
+    if(n<0){scrStars.style.display="none";return;}
+    scrStars.style.display="flex";
+    starEls.forEach(function(el,i){el.classList.toggle("dim", i>=n);});
+  }
+  function goto(i){
+    cur=Math.max(0,Math.min(STEPS.length-1,i));
+    var s=STEPS[cur];
+    stepnum.textContent=(cur+1)+" / "+STEPS.length;
+    dotBtns.forEach(function(b,j){b.classList.toggle("on",j===cur);});
+    scrCap.textContent=s.cap||""; scrCap.style.display=s.cap?"block":"none";
+    scrSub.textContent=s.sub||""; scrSub.style.display=s.sub?"block":"none";
+    scrChoice.innerHTML=s.choice||""; scrChoice.style.display=s.choice?"flex":"none";
+    scrBtn.hidden=!s.button;
+    scrReward.hidden=true; scrReward.innerHTML="";
+    setStars(s.stars===undefined?-1:s.stars);
+    expTitle.textContent=s.title; expWhat.textContent=s.what; expChall.textContent=s.ch; expSol.textContent=s.sol;
+    prev.disabled=cur===0; next.disabled=cur===STEPS.length-1;
+  }
+  prev.addEventListener("click",function(){goto(cur-1);});
+  next.addEventListener("click",function(){goto(cur+1);});
+  scrBtn.addEventListener("click",function(){
+    var s=STEPS[cur];
+    scrBtn.hidden=true; scrCap.style.display="none";
+    scrReward.innerHTML=s.reward||""; scrReward.hidden=false;
+  });
+  goto(0);
+})();
+</script>
+</body>
+</html>

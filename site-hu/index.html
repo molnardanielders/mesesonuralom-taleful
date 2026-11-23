@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mesés önuralom — aminek tudatosan vége van</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --len:#f4ecdd; --len2:#efe3cf; --surface:#fffaf1; --page:#e7ddcb;
+    --tinta:#3b2a33; --muted:#7c6a6f; --line:#e6d8c2;
+    --rozsa:#c62d3f; --rozsa-sotet:#8f1d31; --paprika:#e65a2b;
+    --kek:#5b93d1; --zold:#3b9655; --zold-sotet:#2b7444; --sarga:#f2b40a;
+    --szilva:#7d2a5c; --rozsaszin:#dd5f93; --ej:#201a40; --ej1:#1b1640; --ej2:#43305f; --ej3:#5a3f7a; --honey:#f0962a;
+    --shadow:0 22px 52px -32px rgba(59,42,51,.5);
+    --maxw:960px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--page);color:var(--tinta);font-family:"Nunito",system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,40px)}
+  h1,h2,h3{font-family:"Nunito",sans-serif;font-weight:600;margin:0;line-height:1.14}
+  p{margin:0}
+  .eyebrow{font-family:"Nunito",sans-serif;letter-spacing:.2em;text-transform:uppercase;font-size:.72rem;color:var(--rozsa-sotet)}
+  .dotrule{display:flex;justify-content:center;gap:9px;margin:0}
+  .dotrule i{width:8px;height:8px;border-radius:50%}
+
+  .hero{text-align:center;background:radial-gradient(130% 90% at 50% 0%,#fdf6ea,var(--len) 72%);
+    padding:clamp(40px,7vw,78px) 0 clamp(36px,6vw,56px)}
+  .medallion{width:clamp(130px,26vw,186px);height:clamp(130px,26vw,186px);margin:0 auto}
+  .hero h1{font-size:clamp(2rem,6vw,3.5rem);color:var(--rozsa-sotet);margin:14px auto 0;max-width:17ch;text-wrap:balance}
+  .hero .lead{color:var(--muted);max-width:52ch;margin:18px auto 0;font-size:clamp(1.05rem,2.6vw,1.26rem)}
+  .hero .dotrule{margin-top:28px}
+
+  section{padding:clamp(48px,8vw,84px) 0}
+  .band{background:var(--len2)}
+  .night{background:radial-gradient(120% 120% at 50% 30%,var(--ej2),var(--ej));color:#fdf6ea}
+  .sec-head{text-align:center;max-width:40ch;margin:0 auto clamp(32px,5vw,50px)}
+  .sec-head h2{font-size:clamp(1.55rem,4.2vw,2.4rem);margin-top:10px;color:var(--tinta)}
+  .night .sec-head h2{color:#fff}
+  .sec-head p{color:var(--muted);margin-top:14px;font-size:1.05rem}
+  .night .sec-head p{color:#e6def4}
+
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:760px){.grid3{grid-template-columns:1fr}}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:var(--shadow)}
+  .card .ic{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:#f6e7d4;margin-bottom:14px}
+  .card .ic svg{width:26px;height:26px}
+  .card h3{font-size:1.2rem;margin-bottom:8px}
+  .card p{color:var(--muted);font-size:.98rem}
+
+  .steps{counter-reset:s;display:grid;gap:14px;max-width:760px;margin:0 auto}
+  .step{counter-increment:s;display:flex;gap:18px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px 20px;box-shadow:var(--shadow)}
+  .step::before{content:counter(s);flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-family:"Nunito",sans-serif;font-weight:600;color:#fff;background:var(--rozsa)}
+  .step h3{font-size:1.06rem;margin-bottom:2px}
+  .step p{color:var(--muted);font-size:.95rem}
+
+  .diff{display:grid;gap:14px;grid-template-columns:1fr;max-width:640px;margin:0 auto}
+  @media(max-width:680px){.diff{grid-template-columns:1fr}}
+  .diff div{display:flex;gap:12px;align-items:flex-start;font-size:1.02rem}
+  .diff .chk{flex:none;width:28px;height:28px}
+  .diff b{font-family:"Nunito",sans-serif;font-weight:500}
+
+  .signature{text-align:center}
+  .signature .roses{display:flex;justify-content:center;gap:18px;align-items:center;margin-bottom:8px}
+  .signature .roses svg{width:56px;height:56px}
+  .signature h2{color:#fff;font-size:clamp(1.5rem,4vw,2.2rem);max-width:22ch;margin:0 auto}
+  .signature p{color:#e6def4;max-width:48ch;margin:16px auto 0}
+
+  .paths{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:760px){.paths{grid-template-columns:1fr}}
+  .pathcard{display:flex;flex-direction:column}
+  .pathcard p{flex:1;color:var(--muted);font-size:.97rem}
+  .pathcard .ic{width:50px;height:50px;border-radius:14px;display:grid;place-items:center;background:#f6e7d4;margin-bottom:12px}
+  .pathcard .ic svg{width:30px;height:30px}
+  .dlbtn{margin-top:18px;align-self:flex-start;text-decoration:none;font-family:"Nunito",sans-serif;font-size:.98rem;color:#fff;background:var(--rozsa);border-radius:999px;padding:12px 20px;display:inline-flex;align-items:center;gap:9px;box-shadow:0 10px 22px -10px rgba(198,45,63,.75)}
+  .dlbtn svg{width:1.05em;height:1.05em}
+
+  .milestones{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:16px}
+  .milestones span{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:.88rem}
+  .posnote{margin-top:18px;align-self:flex-start;color:var(--rozsa-sotet);font-family:"Nunito",sans-serif;font-size:.86rem;background:#f6e7d4;border-radius:999px;padding:8px 16px}
+  .subform{display:flex;gap:10px;max-width:470px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+  .subform input[type=email]{flex:1 1 240px;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;font-size:1rem;font-weight:400;font-family:"Nunito",sans-serif;background:var(--surface);color:var(--tinta)}
+  .subform button{border:none;border-radius:999px;background:var(--rozsa);color:#fff;font-family:"Nunito",sans-serif;font-weight:700;font-size:1rem;padding:14px 30px;cursor:pointer}
+  .subnote{text-align:center;color:var(--muted);font-size:.85rem;margin-top:14px}
+  .subform .consent{flex:1 1 100%;display:flex;gap:8px;align-items:flex-start;max-width:430px;margin:4px auto 0;font-size:.82rem;color:var(--muted);font-weight:400;text-align:left;line-height:1.45}
+  .subform .consent input{flex:none;margin-top:3px;width:16px;height:16px;accent-color:var(--rozsa)}
+  .joinform{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+  .joinform .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:560px){.joinform .row2{grid-template-columns:1fr}}
+  .joinform label{display:flex;flex-direction:column;gap:6px;font-size:.84rem;color:var(--muted);font-weight:700}
+  .joinform input,.joinform select,.joinform textarea{font-family:"Nunito",sans-serif;font-size:1rem;font-weight:400;color:var(--tinta);background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px}
+  .joinform textarea{resize:vertical}
+  .joinform button{align-self:center;border:none;border-radius:999px;background:var(--rozsa);color:#fff;font-family:"Nunito",sans-serif;font-weight:700;font-size:1rem;padding:14px 30px;cursor:pointer;margin-top:4px}
+  .contact{margin-top:14px;color:var(--tinta);font-size:.9rem}
+  .contact b{font-weight:700;font-family:"Nunito",sans-serif}
+  .contact a{color:var(--rozsa-sotet);text-decoration:none}
+  .footwrap{text-align:center;max-width:620px;margin:0 auto}
+  .footname{font-size:1rem;color:var(--tinta);margin-top:14px}
+  .footname b{font-weight:700}
+  .footmail{margin-top:4px}
+  .footmail a{color:var(--rozsa-sotet);text-decoration:none;font-weight:700}
+  .footcredit{color:var(--muted);font-size:.86rem;margin-top:14px}
+  .footlic{color:var(--muted);font-size:.8rem;margin-top:12px}
+  html{scroll-padding-top:58px}
+  section[id]{scroll-margin-top:58px}
+  #topbar{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(247,240,227,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line);transform:translateY(-100%);transition:transform .3s ease;box-shadow:0 6px 18px -14px rgba(59,42,51,.5);padding-top:env(safe-area-inset-top,0px)}
+  #topbar.show{transform:translateY(0)}
+  #progress{height:3px;background:var(--rozsa);width:0%;transition:width .1s linear}
+  .navdots{display:flex;gap:6px;justify-content:center;align-items:center;padding:7px 12px;overflow-x:auto;scrollbar-width:none}
+  .navdots::-webkit-scrollbar{display:none}
+  .navdots a{flex:none;text-decoration:none;font-family:"Nunito",sans-serif;font-size:.78rem;font-weight:700;color:var(--muted);border-radius:999px;padding:5px 11px;white-space:nowrap;transition:background .2s,color .2s}
+  .navdots a:hover{color:var(--tinta)}
+  .navdots a.active{background:var(--rozsa);color:#fff}
+  .navrow{display:none}
+  .navbrand{font-family:"Nunito",sans-serif;font-weight:800;color:var(--rozsa-sotet);font-size:.95rem}
+  .navtoggle{display:none;align-items:center;justify-content:center;width:38px;height:38px;border:none;background:transparent;color:var(--rozsa-sotet);cursor:pointer;border-radius:10px}
+  .navtoggle svg{width:24px;height:24px}
+  .langswitch{display:flex;gap:4px;align-items:center}
+  .langswitch .lg{font-family:"Nunito",sans-serif;font-size:.8rem;font-weight:700;text-decoration:none;border-radius:999px;padding:4px 9px;line-height:1.1}
+  .langswitch a.lg{color:var(--muted);border:1px solid var(--line)}
+  .langswitch a.lg:hover{color:var(--rozsa-sotet);border-color:var(--rozsa)}
+  .langswitch .lg.on{background:var(--rozsa);color:#fff}
+  .lang-desktop{position:absolute;right:16px;top:9px}
+  @media(min-width:721px){.navdots{padding-left:80px;padding-right:80px}}
+  @media(max-width:720px){.lang-desktop{display:none}}
+  @media(max-width:720px){
+    .navrow{display:flex;align-items:center;justify-content:space-between;padding:7px 14px}
+    .navtoggle{display:flex}
+    .navdots{display:none;flex-direction:column;gap:2px;padding:4px 10px 10px;max-height:72vh;overflow-y:auto;overflow-x:hidden}
+    .navdots.open{display:flex}
+    .navdots a{text-align:left;padding:11px 12px;font-size:.95rem;white-space:normal}
+  }
+  /* embedded walkthrough */
+  .kcard{background:var(--surface);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:clamp(16px,4vw,26px);max-width:760px;margin:0 auto}
+  .khead{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .stepnum{font-weight:800;color:var(--rozsa);font-size:.95rem}
+  .kdots{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+  .kdots button{width:10px;height:10px;border-radius:50%;border:none;background:var(--line);cursor:pointer;padding:0}
+  .kdots button.on{background:var(--rozsa)}
+  .stage-row{display:flex;align-items:center;gap:clamp(6px,2vw,12px)}
+  .arrow{flex:none;width:clamp(38px,10vw,48px);height:clamp(38px,10vw,48px);border-radius:50%;border:1.5px solid var(--line);background:var(--surface);color:var(--rozsa-sotet);cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .arrow svg{width:22px;height:22px}
+  .arrow:disabled{opacity:.3;cursor:default}
+  .arrow:hover:not(:disabled){border-color:var(--rozsa);color:var(--rozsa)}
+  .screen{position:relative;flex:1;min-width:0;aspect-ratio:16/10;border-radius:16px;overflow:hidden;background:radial-gradient(120% 120% at 50% 15%,var(--ej3),var(--ej2) 55%,var(--ej1));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:18px;color:#fdf6ea}
+  .scr-stars{display:flex;gap:14px;min-height:4px}
+  .scr-stars svg{width:clamp(28px,7vw,44px);height:clamp(28px,7vw,44px);transition:opacity .5s,transform .5s}
+  .scr-stars svg.dim{opacity:.22;transform:scale(.82)}
+  .scr-cap{font-weight:700;font-size:clamp(1.05rem,3.8vw,1.45rem)}
+  .scr-sub{font-size:clamp(.82rem,3vw,1rem);color:#e3dcf1}
+  .scr-choice{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+  .wchip{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:8px 15px;font-size:.92rem}
+  .opt{border-radius:20px;padding:16px 22px;border:2px solid transparent;display:flex;align-items:center;justify-content:center}
+  .opt svg{width:clamp(54px,15vw,82px);height:clamp(54px,15vw,82px)}
+  .opt.heart{background:rgba(232,99,122,.18);border-color:#e8637a}.opt.mind{background:rgba(63,157,141,.18);border-color:#3f9d8d}
+  .mesecard{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.28);border-radius:14px;padding:14px 20px;font-weight:700}
+  .mesecard small{font-weight:400;color:#ffd98a}
+  .scr-btn{appearance:none;border:none;cursor:pointer;font-family:inherit;font-weight:800;font-size:1.05rem;color:#5a3a07;background:var(--honey);padding:16px 26px;border-radius:999px;display:inline-flex;align-items:center;gap:10px;box-shadow:0 10px 26px -8px rgba(240,150,42,.8);animation:kpulse 1.4s ease-in-out infinite}
+  .scr-btn svg{width:1.2em;height:1.2em}
+  .scr-btn[hidden]{display:none}
+  @keyframes kpulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(240,150,42,.55),0 10px 26px -8px rgba(240,150,42,.85)}50%{transform:scale(1.06);box-shadow:0 0 0 15px rgba(240,150,42,0),0 10px 26px -8px rgba(240,150,42,.85)}}
+  .scr-reward .rw{font-weight:800;font-size:clamp(1.2rem,4.4vw,1.7rem)}
+  .scr-reward .rw2{margin-top:6px;color:#e3dcf1}
+  .exp{margin-top:18px}
+  .exp h3{font-size:1.15rem;margin:0 0 10px;color:var(--tinta)}
+  .exp .block{display:flex;gap:12px;align-items:flex-start;padding:9px 0;border-top:1px dashed var(--line)}
+  .exp .block:first-of-type{border-top:0}
+  .exp .lab{flex:none;width:120px;font-weight:800;font-size:.8rem;padding-top:2px}
+  .exp .lab.l1{color:var(--muted)} .exp .lab.l2{color:var(--rozsa-sotet)} .exp .lab.l3{color:var(--zold)}
+  .exp .block p{margin:0;font-size:.97rem}
+  @media(max-width:520px){.exp .block{flex-direction:column;gap:2px}.exp .lab{width:auto}}
+  /* area detail sections */
+  .area{max-width:720px;margin:0 auto}
+  .area ul{list-style:none;padding:0;margin:0}
+  .area li{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-top:1px dashed var(--line);font-size:1rem}
+  .area li:first-child{border-top:0}
+  .area li b{font-weight:700}
+  .area .areadot{flex:none;width:9px;height:9px;border-radius:50%;background:var(--rozsa);margin-top:8px}
+  .pdflink{display:inline-flex;align-items:center;gap:8px;margin-top:18px;text-decoration:none;font-weight:700;font-size:.92rem;color:var(--rozsa-sotet)}
+  .pdflink svg{width:1em;height:1em}
+
+  .impl{max-width:760px;margin:0 auto;font-size:1.06rem}
+  .impl p+p{margin-top:14px}
+  .impl .muted{color:var(--muted);font-size:1rem}
+
+  .closing h2{font-size:clamp(1.6rem,4.4vw,2.5rem);max-width:20ch;margin:0 auto;text-align:center;text-wrap:balance;color:var(--rozsa-sotet)}
+  .closing p{color:var(--muted);text-align:center;margin-top:14px;font-size:1.1rem}
+
+  footer{border-top:1px solid var(--line);padding:26px 0 40px;color:var(--muted);font-size:.86rem}
+  footer .credit{display:flex;gap:12px;align-items:flex-start;max-width:720px}
+  footer .credit svg{width:24px;height:24px;flex:none;margin-top:2px}
+  footer .lic{text-align:center;margin-top:16px;font-size:.8rem}
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="rose" viewBox="0 0 100 100"><g transform="translate(50,50)">
+    <g fill="#8f1d31"><ellipse cx="0" cy="-24" rx="15" ry="20"/><ellipse cx="0" cy="-24" rx="15" ry="20" transform="rotate(72)"/><ellipse cx="0" cy="-24" rx="15" ry="20" transform="rotate(144)"/><ellipse cx="0" cy="-24" rx="15" ry="20" transform="rotate(216)"/><ellipse cx="0" cy="-24" rx="15" ry="20" transform="rotate(288)"/></g>
+    <g fill="#c62d3f"><ellipse cx="0" cy="-16" rx="11" ry="15" transform="rotate(36)"/><ellipse cx="0" cy="-16" rx="11" ry="15" transform="rotate(108)"/><ellipse cx="0" cy="-16" rx="11" ry="15" transform="rotate(180)"/><ellipse cx="0" cy="-16" rx="11" ry="15" transform="rotate(252)"/><ellipse cx="0" cy="-16" rx="11" ry="15" transform="rotate(324)"/></g>
+    <circle r="12" fill="#dd5f93"/><path d="M-6 3 a7 7 0 0 1 12 -5" fill="none" stroke="#f6e4c0" stroke-width="2.4" stroke-linecap="round"/><circle r="4" fill="#8f1d31"/></g></symbol>
+  <symbol id="fmn" viewBox="0 0 40 40"><g transform="translate(20,20)" fill="#5b93d1"><circle cx="0" cy="-10" r="6.5"/><circle cx="0" cy="-10" r="6.5" transform="rotate(72)"/><circle cx="0" cy="-10" r="6.5" transform="rotate(144)"/><circle cx="0" cy="-10" r="6.5" transform="rotate(216)"/><circle cx="0" cy="-10" r="6.5" transform="rotate(288)"/><circle r="5" fill="#f2b40a"/></g></symbol>
+  <symbol id="leaf" viewBox="0 0 40 60"><path d="M20 2 C34 16 34 44 20 58 C6 44 6 16 20 2 Z" fill="#3b9655"/><path d="M20 7 V53" stroke="#2b7444" stroke-width="2.2"/></symbol>
+  <symbol id="bud" viewBox="0 0 30 44"><path d="M15 42 C6 34 7 16 15 6 C23 16 24 34 15 42 Z" fill="#7d2a5c"/><circle cx="15" cy="9" r="4" fill="#f2b40a"/></symbol>
+  <symbol id="star" viewBox="0 0 48 48"><path d="M24 3 L29 18 L45 18 L32 28 L37 44 L24 34 L11 44 L16 28 L3 18 L19 18 Z" fill="#f0962a"/></symbol>
+</svg>
+
+  <div id="topbar" aria-label="Szakasz-navigáció">
+    <div id="progress"></div>
+    <div class="langswitch lang-desktop"><span class="lg on">HU</span><a class="lg" href="https://taleful.eu/" aria-label="English">EN</a></div>
+    <div class="navrow">
+      <span class="navbrand">Mesés önuralom</span>
+      <div style="display:flex;gap:8px;align-items:center"><div class="langswitch lang-mobile"><span class="lg on">HU</span><a class="lg" href="https://taleful.eu/" aria-label="English">EN</a></div><button class="navtoggle" id="navtoggle" type="button" aria-label="Menü" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div>
+    </div>
+    <nav class="navdots" id="navdots">
+      <a href="#problema">Probléma</a>
+      <a href="#megoldas">Megoldás</a>
+      <a href="#mitol-mas">Mitől más</a>
+      <a href="#jelkep">Jelkép</a>
+      <a href="#csapat">Csapat</a>
+      <a href="#ket-ut">Két út</a>
+      <a href="#kozmedia">Közmédia</a>
+      <a href="#hirlevel">Hírlevél</a>
+      <a href="#csatlakozas">Csatlakozás</a>
+    </nav>
+  </div>
+
+  <header class="hero">
+    <div class="wrap">
+      <svg class="medallion" viewBox="0 0 200 200" aria-hidden="true"><g id="ring"></g><use href="#rose" x="62" y="62" width="76" height="76"/></svg>
+      <p class="eyebrow">Mesés önuralom</p>
+      <h1>Az első gyerekcsatorna, aminek tudatosan vége van.</h1>
+      <p class="lead">A szülő egyetlen kérdésre válaszol — szív vagy ész? —, a gyermek pedig maga zárja le a mesét. Korhoz illő hosszban, kiszámítható véggel, harc nélkül. Lefekvés, ebéd vagy indulás előtt — amikor a gyereknek meg kell állnia.</p>
+      <div class="dotrule" id="dr1"></div>
+    </div>
+  </header>
+
+  <section class="band" id="problema">
+    <div class="wrap">
+      <div class="sec-head reveal"><p class="eyebrow">A probléma</p><h2>Amit minden kisgyerekes szülő ismer</h2></div>
+      <div class="grid3">
+        <div class="card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#8f1d31" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.8-2.5 2-2.5 4"/><circle cx="12" cy="17" r=".6" fill="#8f1d31"/></svg></div><h3>Mi való neki most?</h3><p>Nehéz gyorsan eldönteni, melyik mese jó a gyermeknek az adott korban és helyzetben.</p></div>
+        <div class="card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#8f1d31" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 15c1-1.2 3-1.2 4 0M8.5 9h.01M15.5 9h.01"/></svg></div><h3>A vég mindig harc</h3><p>Fürdés vagy alvás előtt a mese kikapcsolása sírással, alkudozással jár.</p></div>
+        <div class="card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#8f1d31" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12a4 4 0 1 1 1.2 2.8L5 19M16 12a4 4 0 1 0-1.2 2.8L19 19"/></svg></div><h3>Sosincs vége</h3><p>A legtöbb gyerektartalom végtelenített — az automatikus lejátszás mindig kínál még egyet.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="megoldas">
+    <div class="wrap">
+      <div class="sec-head reveal"><p class="eyebrow">A megoldás</p><h2>Egy mese, aminek rendje van</h2><p>Öt egyszerű lépés, ami a döntést a szülőnek, a lezárást a gyermeknek adja.</p></div>
+      <div class="steps">
+        <div class="step reveal"><div><h3>Ki néz most?</h3><p>A szülő kiválasztja a gyermeket — a rendszer ismeri a korát.</p></div></div>
+        <div class="step reveal"><div><h3>Szív vagy ész?</h3><p>A szülő arra válaszol, amit tényleg tud: az együttérzésre vagy a gondolkodásra van most szükség?</p></div></div>
+        <div class="step reveal"><div><h3>Korhoz illő mese és hossz</h3><p>A rendszer a megfelelő mesét kínálja, a korhoz illő hosszban.</p></div></div>
+        <div class="step reveal"><div><h3>Felkészítés és visszaszámlálás</h3><p>A mese elején a gyermek megtudja, meddig tart; egy fogyó, látható jelző számol vissza.</p></div></div>
+        <div class="step reveal"><div><h3>A gyermek zárja le</h3><p>A végén a gyermek maga zárja le a mesét, amire nyugtató jóéjt-rituálé vezet át.</p></div></div>
+      </div>
+      <div class="reveal" style="margin-top:40px">
+        <h3 style="text-align:center;font-size:clamp(1.3rem,3.6vw,1.8rem);margin:0 0 6px;color:var(--tinta)">Nézd végig lépésről lépésre</h3>
+        <p style="text-align:center;color:var(--muted);max-width:54ch;margin:0 auto 22px">Mi történik, mi a kihívás, és mi rá az elméleti megoldás. Lapozz a nyilakkal; a legvégén a gyerek egy gombbal zárja le a mesét.</p>
+        <div class="kcard">
+          <div class="khead"><span class="stepnum" id="stepnum">1 / 8</span><div class="kdots" id="kdots"></div></div>
+          <div class="stage-row">
+            <button class="arrow" id="kprev" type="button" aria-label="Vissza"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+            <div class="screen" id="screen">
+              <div class="scr-stars" id="scrStars"></div>
+              <div class="scr-cap" id="scrCap"></div>
+              <div class="scr-sub" id="scrSub"></div>
+              <div class="scr-choice" id="scrChoice"></div>
+              <button class="scr-btn" id="scrBtn" type="button" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 3v9"/><path d="M6.5 7a8 8 0 1 0 11 0"/></svg>Nyomd meg!</button>
+              <div class="scr-reward" id="scrReward" hidden></div>
+            </div>
+            <button class="arrow" id="knext" type="button" aria-label="Tovább"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+          </div>
+          <div class="exp">
+            <h3 id="expTitle"></h3>
+            <div class="block"><span class="lab l1">Mi történik</span><p id="expWhat"></p></div>
+            <div class="block"><span class="lab l2">Kihívás</span><p id="expChall"></p></div>
+            <div class="block"><span class="lab l3">Elméleti megoldás</span><p id="expSol"></p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="mitol-mas">
+    <div class="wrap">
+      <div class="sec-head reveal"><p class="eyebrow">Mitől más</p><h2>Nem egy újabb képernyő, hanem egy jobb szokás</h2></div>
+      <div class="diff">
+        <div class="reveal"><svg class="chk" viewBox="0 0 40 40"><use href="#fmn" width="40" height="40"/></svg><p><b>Tudatos vég,</b> nem végtelen görgetés — a vég tényleg vég.</p></div>
+        <div class="reveal"><svg class="chk" viewBox="0 0 40 40"><use href="#fmn" width="40" height="40"/></svg><p><b>A szülő dönt,</b> olyan kérdés alapján, amit tud: szív vagy ész.</p></div>
+        <div class="reveal"><svg class="chk" viewBox="0 0 40 40"><use href="#fmn" width="40" height="40"/></svg><p><b>A gyermek zárja le</b> — a konfliktusból rituálé és kis sikerélmény lesz.</p></div>
+        <div class="reveal"><svg class="chk" viewBox="0 0 40 40"><use href="#fmn" width="40" height="40"/></svg><p><b>Emberi szaktudás,</b> nem algoritmus: meseírók, kiadók, kutatók sorolják be a meséket.</p></div>
+        <div class="reveal"><svg class="chk" viewBox="0 0 40 40"><use href="#fmn" width="40" height="40"/></svg><p><b>Kor-első és fejlődéstudatos,</b> a józan, együttnéző használatot támogatja.</p></div>
+        <div class="reveal"><svg class="chk" viewBox="0 0 40 40"><use href="#fmn" width="40" height="40"/></svg><p><b>Szülőnek és gyereknek is jó</b> — nyugodtabb esték, kevesebb harc.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="night" id="jelkep">
+    <div class="wrap signature reveal">
+      <div class="roses"><svg viewBox="0 0 48 48" style="width:52px;height:52px"><use href="#star" width="48" height="48"/></svg><svg viewBox="0 0 48 48" style="width:52px;height:52px;opacity:.55"><use href="#star" width="48" height="48"/></svg><svg viewBox="0 0 48 48" style="width:44px;height:44px;opacity:.26"><use href="#star" width="48" height="48"/></svg></div>
+      <h2>A csillagok elfogynak — és a gyermek zárja le a mesét</h2>
+      <p>A mese nem egyszerűen véget ér: felkészít rá. Mesés csillagok számolnak vissza (a legkisebbek még nem értik a perceket), egyesével „elalszanak", majd minden alkalommal ugyanaz a rövid elköszönés jön. A végén a gyermek maga zárja le a mesét — és ezért kis, nyugtató elismerést kap. A harcból így ismerős, biztonságos esti rituálé lesz.</p>
+    </div>
+  </section>
+
+  <section id="csapat">
+    <div class="wrap">
+      <div class="sec-head reveal"><p class="eyebrow">A csapat · nyitott pozíciók</p><h2>Öt terület, egy cél</h2><p>Kattints egy területre a részletekért; a nyitott pozíciókra embereket keresünk.</p></div>
+      <div class="paths">
+        <div class="card pathcard reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#8f1d31" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5c2.6-1 5.4-1 8 0v14c-2.6-1-5.4-1-8 0z"/><path d="M20 5c-2.6-1-5.4-1-8 0v14c2.6-1 5.4-1 8 0z"/><path d="M16.5 3l.5 1.3 1.4.1-1.1 .9.4 1.3-1.2-.8-1.2.8.4-1.3-1.1-.9 1.4-.1z" fill="#f2b40a" stroke="none"/></svg></div><h3>A kalóz — a tartalom</h3><p>A 0–3 kánon meséinek felkutatása, kiválogatása, megfelelő hosszra vágása és rendszerezése.</p><a class="dlbtn" href="#kaloz-reszletek"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10l5 5 5-5"/></svg>Részletek</a></div>
+        <div class="card pathcard reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#8f1d31" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/><path d="M10.5 8l.6 1.5 1.6.1-1.2 1 .4 1.5-1.4-.9-1.4.9.4-1.5-1.2-1 1.6-.1z" fill="#f2b40a" stroke="none"/></svg></div><h3>A kutató — a besorolás</h3><p>A szív/ész rendszer, a korsávok, a fejlődéslélektani alapok és a független, szakértői munkafolyamat.</p><a class="dlbtn" href="#kutato-reszletek"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10l5 5 5-5"/></svg>Részletek</a></div>
+        <div class="card pathcard reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#8f1d31" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.3"/><path d="M12 3.5v2.3M12 18.2v2.3M4.4 7.5l2 1.2M17.6 15.3l2 1.2M4.4 16.5l2-1.2M17.6 8.7l2-1.2"/></svg></div><h3>A fejlesztő — a rendszer</h3><p>A technikai megoldás: ISO telepítő, vezérlő szoftver, okosotthon és a mobil/tablet app — nyílt forráskódú.</p><a class="dlbtn" href="#fejleszto-reszletek"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10l5 5 5-5"/></svg>Részletek</a></div>
+        <div class="card pathcard reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#8f1d31" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M7 20h10M12 6l6 2M12 6L6 8"/><path d="M6 8l-2.2 4.2a2.5 2.5 0 0 0 4.4 0z"/><path d="M18 8l-2.2 4.2a2.5 2.5 0 0 0 4.4 0z"/></svg></div><h3>A jogász — a jogi háttér</h3><p>A nyílt licenc, a szerzői jog, a gyermekadat (GDPR) és a „rendes" indulás jogi feltételei.</p><a class="dlbtn" href="#jogasz-reszletek"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10l5 5 5-5"/></svg>Részletek</a></div>
+        <div class="card pathcard reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#8f1d31" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18 1.8 1.8 0 0 0 1.6-2.7 1.8 1.8 0 0 1 1.6-2.7H17a4 4 0 0 0 4-4c0-4.4-4-6.6-9-6.6z"/><circle cx="8" cy="10" r="1" fill="#c62d3f" stroke="none"/><circle cx="12" cy="7.5" r="1" fill="#5b93d1" stroke="none"/><circle cx="16" cy="10" r="1" fill="#f2b40a" stroke="none"/></svg></div><h3>A dizájner — a megjelenés</h3><p>A vezérlőszoftver kinézete, a választható témák (letisztult alap és matyó-mesés) és a használhatóság.</p><a class="dlbtn" href="#dizajner-reszletek"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10l5 5 5-5"/></svg>Részletek</a></div>
+        <div class="card pathcard reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#8f1d31" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 9a3 3 0 1 1 4.5 2.6c-1 .6-1.5 1.1-1.5 2.4"/><circle cx="12" cy="18" r=".7" fill="#8f1d31" stroke="none"/></svg></div><h3>Mi hiányzik még?</h3><p>Öt területet találtunk eddig — de biztosan van, amit még nem látunk. A hatodik ez: amit még nem tudunk. Ha látsz egy hiányzó szerepet vagy ötletet, te lehetsz, aki megmutatja.</p><span class="posnote">Nyitott kérdés</span></div>
+      </div>
+      <div class="reveal" style="text-align:center;margin-top:34px">
+        <p class="eyebrow" style="color:var(--rozsa-sotet)">Kapcsolódási pontok</p>
+        <p style="color:var(--muted);max-width:60ch;margin:10px auto 0">Az ágak nem várnak egymásra; akkor kapcsolódnak össze, amikor elérik a kritikus tömeget:</p>
+        <div class="milestones">
+          <span>0–3 mesekutatás kész</span><span>ISO: kulcsrakész rendszer</span><span>összeáll a 0–3 mesekönyvtár</span><span>mobil/tablet app</span><span>szívügyes partner belép</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="kaloz-reszletek">
+    <div class="wrap">
+      <div class="sec-head reveal"><p class="eyebrow">A kalóz · a tartalom</p><h2>A mesekönyvtár összeállítása</h2><p>A 0–3 kánon fontos meséinek felkutatása, kiválogatása, megfelelő hosszra vágása és rendszerezése.</p></div>
+      <div class="area reveal">
+        <ul>
+          <li><span class="areadot"></span><span><b>Négy lépés:</b> felkutatás → kiválogatás (korsáv és szív/ész szerint) → méretre vágás (rövid epizódok) → rendszerezés.</span></li>
+          <li><span class="areadot"></span><span><b>Minőség:</b> jó kép és hang; egy epizód = egy fájl; konzisztens elnevezés.</span></li>
+          <li><span class="areadot"></span><span><b>Mérföldkő:</b> összeáll a 0–3 mesekönyvtár, jó minőségben, jó hosszra vágva.</span></li>
+          <li><span class="areadot"></span><span><b>Határ:</b> a szerzői jogvédett tartalom nyilvános terjesztése nem része a nyílt, legális projektnek — a legális út a licencelés.</span></li>
+        </ul>
+        <a class="pdflink" href="Kaloz-ag-tartalom.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 21h14"/></svg>Teljes útmutató PDF-ben</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="kutato-reszletek">
+    <div class="wrap">
+      <div class="sec-head reveal"><p class="eyebrow">A kutató · a besorolás</p><h2>A besorolás módszertana</h2><p>Ez teszi hitelessé a programot — ettől hisz a szülő csukott szemmel is.</p></div>
+      <div class="area reveal">
+        <ul>
+          <li><span class="areadot"></span><span><b>Két tengely:</b> szív és ész, egyenként 0–3 ponttal; egy mese lehet egyszerre magas mindkettőben.</span></li>
+          <li><span class="areadot"></span><span><b>Jellemzők:</b> korsávok (0–18 hó … 4–5 év), hossz, tapadás, ijesztő elem.</span></li>
+          <li><span class="areadot"></span><span><b>Megbízhatóság:</b> minden mesét legalább két szakember, egymástól függetlenül pontoz.</span></li>
+          <li><span class="areadot"></span><span><b>Alap:</b> fejlődéslélektani megalapozás; a besorolás a pontozó sablonba kerül.</span></li>
+        </ul>
+        <a class="pdflink" href="Kutato-ag-modszertan.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 21h14"/></svg>Teljes útmutató PDF-ben</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="fejleszto-reszletek">
+    <div class="wrap">
+      <div class="sec-head reveal"><p class="eyebrow">A fejlesztő · a rendszer</p><h2>A technikai rendszer</h2><p>Kulcsrakész, nyílt forráskódú megoldás, amit bárki továbbfejleszthet.</p></div>
+      <div class="area reveal">
+        <ul>
+          <li><span class="areadot"></span><span><b>ISO (tartalom nélkül):</b> könnyű Linux kioszk, lejátszó, a vezérlő szoftver, Home Assistant, üres besorolási adatbázis.</span></li>
+          <li><span class="areadot"></span><span><b>Hardver:</b> mini PC / Raspberry Pi, TV, nagy gomb (kész vezeték nélküli vagy DIY arcade + ESP32).</span></li>
+          <li><span class="areadot"></span><span><b>Modulok:</b> kijelző, agy (választás + munkamenet), besorolás-elérés, tár, lejátszó-vezérlés, okosotthon.</span></li>
+          <li><span class="areadot"></span><span><b>App és nyílt kód:</b> mobil/tablet app; a kód GPLv3 alatt.</span></li>
+        </ul>
+        <a class="pdflink" href="Fejleszto-ag-technikai-rendszer.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 21h14"/></svg>Teljes útmutató PDF-ben</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="jogasz-reszletek">
+    <div class="wrap">
+      <div class="sec-head reveal"><p class="eyebrow">A jogász · a jogi háttér</p><h2>A jogi háttér</h2><p>Hogy a program legálisan és biztonságosan indulhasson. (Nem jogi tanács.)</p></div>
+      <div class="area reveal">
+        <ul>
+          <li><span class="areadot"></span><span><b>Kérdések:</b> licenc, tartalomlicencelés, gyermekadat / GDPR (DPIA), médiajog (NMHH / AVMS), feliratkozó-lista, cégforma.</span></li>
+          <li><span class="areadot"></span><span><b>Garanciák a szülőknek:</b> nincs reklám, nincs adateladás, átláthatóság és teljes szülői kontroll.</span></li>
+          <li><span class="areadot"></span><span><b>Elv:</b> a rendszer kísér, nem diagnosztizál, és nem helyettesíti a szakembert.</span></li>
+        </ul>
+        <a class="pdflink" href="Jogasz-jogi-hatter.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 21h14"/></svg>Teljes útmutató PDF-ben</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="dizajner-reszletek">
+    <div class="wrap">
+      <div class="sec-head reveal"><p class="eyebrow">A dizájner · a megjelenés</p><h2>A vizuális megjelenítés</h2><p>A dizájn dönti el, hogy a program barátságos, megbízható és könnyen használható-e.</p></div>
+      <div class="area reveal">
+        <ul>
+          <li><span class="areadot"></span><span><b>Témarendszer:</b> letisztult alap (csillag / szív / ész) alapértelmezettként; a matyó-mesés opcióként.</span></li>
+          <li><span class="areadot"></span><span><b>Használhatóság-első (0–3):</b> nagy célterületek, kevés szöveg, nyugodt animációk, esti mód; semmi, ami kivezet.</span></li>
+          <li><span class="areadot"></span><span><b>Designer kit:</b> színek, betűk, motívumok — minden a tovább-álmodáshoz.</span></li>
+          <li><span class="areadot"></span><span><b>Egységes nyelv:</b> web → dokumentumok → vezérlőszoftver → app.</span></li>
+        </ul>
+        <a class="pdflink" href="Dizajner-vizualis-megjelenites.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 21h14"/></svg>Teljes útmutató PDF-ben</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="ket-ut">
+    <div class="wrap">
+      <div class="sec-head reveal"><p class="eyebrow">Két út</p><h2>Így vagy úgy — de léteznie kell</h2><p>Ez a program kétféleképpen valósulhat meg. Mindkét úton ugyanazok az elvek, nyílt kommunikációval és publikált eredményekkel.</p></div>
+      <div class="grid3" style="grid-template-columns:1fr 1fr;max-width:820px;margin:0 auto">
+        <div class="card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#8f1d31" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7"/><path d="M6 10v9h12v-9"/><path d="M10 19v-5h4v5"/></svg></div><h3>Önerőből, otthon</h3><p>Egy szülő összerakja a saját gyerekeinek — otthon, lassan, a meglévő eszközökből. Egy családnak így is működhet, de a mesék jogtiszta beszerzése és a széles, legális elérhetőség megoldatlan marad.</p></div>
+        <div class="card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#8f1d31" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7.5c1-1.6 3.2-1.6 4.2-.3 1 1.3.8 3-.4 4.2L12 15l-3.8-3.6c-1.2-1.2-1.4-2.9-.4-4.2 1-1.3 3.2-1.3 4.2.3z"/><path d="M4 15c1.5 0 2.5 1 3.5 2M20 15c-1.5 0-2.5 1-3.5 2"/></svg></div><h3>Felkarolva</h3><p>Egy komoly szereplő — például a közmédia — licenceli a meséket, csapatot és forrást ad. Így lesz belőle igazi, legális, minden család számára elérhető termék.</p></div>
+      </div>
+      <blockquote class="reveal" style="text-align:center;max-width:56ch;margin:34px auto 0;font-size:clamp(1.05rem,2.8vw,1.3rem);font-weight:700;color:var(--rozsa-sotet);line-height:1.45">„Mindkét utat járhatónak látom, és az egyik nem zárja ki a másikat, hiszen egymástól tanulni nem nagy fáradság. Viszont a széles körű terjesztéshez tiszta lelkiismeret, magabiztos csapattagok és rendezett környezet sem árt.”</blockquote>
+      <p class="reveal" style="text-align:center;color:var(--muted);margin-top:8px">— egy apa</p>
+    </div>
+  </section>
+
+  <section class="band" id="kozmedia">
+    <div class="wrap">
+      <div class="sec-head reveal"><p class="eyebrow">Hogyan valósulhat meg</p><h2>A magyar közmédiának megvan hozzá mindene</h2></div>
+      <div class="impl reveal">
+        <p>Egy ilyen program nem igényel óriási apparátust. A közmédia rendelkezik mindazzal, ami kell: jelentős erőforrással, szakmai tapasztalattal és társintézményi kapcsolatokkal — például kutatóintézetekkel, amelyek a besorolás fejlődéslélektani hátterét adhatják.</p>
+        <p>Már egy kicsi, elkötelezett munkacsoport is létre tudna hozni egy olyan streaming-alkalmazást, amely a gyerekeknek és a szülőknek egyaránt hasznos, és illeszkedik a közszolgálati küldetéshez.</p>
+        <p class="muted">A koncepció már otthoni prototípusként épül: kész a besorolás keretrendszere (szív/ész, korsávok, „tapadás”), a pontozó munkafolyamat és a kikapcsolás-élmény terve.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap closing reveal">
+      <h2>Egy gyerektartalom, ami tiszteli az időt.</h2>
+      <p>A gyermeket, a szülőt és az esti nyugalmat.</p>
+      <div class="dotrule" id="dr2" style="margin-top:26px"></div>
+    </div>
+  </section>
+
+  <section class="band" id="hirlevel">
+    <div class="wrap">
+      <div class="sec-head reveal"><p class="eyebrow">Maradj képben</p><h2>Értesítünk, ha változik</h2><p>Add meg az e-mail-címed, és frissítő levelet küldünk, amikor az oldal megújul.</p></div>
+      <form name="feliratkozas" id="subform" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="subform reveal">
+        <input type="hidden" name="form-name" value="feliratkozas">
+        <p style="display:none"><label>Ne töltsd ki: <input name="bot-field"></label></p>
+        <input type="email" name="email" placeholder="A te e-mail-címed" required>
+        <button type="submit">Feliratkozom</button>
+        <label class="consent"><input type="checkbox" name="hozzajarulas" required> Hozzájárulok, hogy a megadott címre frissítésekről e-mailt kapjak. Bármikor leiratkozhatok.</label>
+      </form>
+      <p class="subnote" id="submsg">Nincs spam — csak egy rövid jelzés, amikor frissül az oldal. Az e-mail-címet csak erre használjuk.</p>
+    </div>
+  </section>
+
+  <section id="csatlakozas">
+    <div class="wrap">
+      <div class="sec-head reveal"><p class="eyebrow">Csatlakoznál?</p><h2>Hozzájárulást küldök</h2><p>Ha szívesen segítenél bármelyik területen, írj — egyik mező sem kötelező.</p></div>
+      <form name="hozzajarulas" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" class="joinform reveal">
+        <input type="hidden" name="form-name" value="hozzajarulas">
+        <p style="display:none"><label>Ne töltsd ki: <input name="bot-field"></label></p>
+        <div class="row2">
+          <label>Szerepkör<select name="szerepkor"><option value="">— válassz —</option><option>Kalóz (tartalom)</option><option>Kutató (besorolás)</option><option>Fejlesztő (rendszer)</option><option>Jogász (jogi háttér)</option><option>Dizájner (megjelenés)</option><option>Valami más / még nem tudom</option></select></label>
+          <label>Anyanyelv<input type="text" name="anyanyelv" placeholder="pl. magyar"></label>
+        </div>
+        <div class="row2">
+          <label>Név<input type="text" name="nev"></label>
+          <label>E-mail cím<input type="email" name="email"></label>
+        </div>
+        <label>Telefonszám<input type="tel" name="telefon"></label>
+        <label>Üzenet<textarea name="uzenet" rows="3"></textarea></label>
+        <label>Csatolmány (opcionális)<input type="file" name="csatolmany"></label>
+        <button type="submit">Küldés</button>
+      </form>
+      <p class="subnote">Egyik mező sem kötelező — annyit árulj el, amennyit szeretnél.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap footwrap">
+      <div class="dotrule" id="dr3"></div>
+      <p class="footname"><b>Molnár Dániel Ders</b> — Ötletelő kisiparos</p>
+      <p class="footcredit">Az arculat a matyó-kalocsai hagyomány és egy nagymama hímzett terítője nyomán készült, tisztelettel. A motívumok eredeti rajzok.</p>
+      <p class="footlic">Mesés önuralom · koncepció-bemutató · 2026 · Szabadon felhasználható: CC BY-SA 4.0</p>
+    </div>
+  </footer>
+
+<script>
+  (function(){
+    var NS="http://www.w3.org/2000/svg";
+    var ring=document.getElementById("ring");
+    function at(cx,cy,r,deg){var a=(deg-90)*Math.PI/180;return [cx+r*Math.cos(a),cy+r*Math.sin(a)];}
+    if(ring){
+      for(var i=0;i<24;i++){var p=at(100,100,86,i*15);var c=document.createElementNS(NS,"circle");c.setAttribute("cx",p[0].toFixed(1));c.setAttribute("cy",p[1].toFixed(1));c.setAttribute("r",i%2?3.4:2.6);c.setAttribute("fill",i%2?"#dd5f93":"#f2b40a");ring.appendChild(c);}
+      for(var j=0;j<6;j++){var d2=j*60+30,q=at(100,100,60,d2);var u=document.createElementNS(NS,"use");u.setAttribute("href","#leaf");u.setAttribute("width","18");u.setAttribute("height","27");u.setAttribute("transform","translate("+q[0].toFixed(1)+","+q[1].toFixed(1)+") rotate("+d2+") translate(-9,-13.5)");ring.appendChild(u);}
+      for(var k=0;k<6;k++){var r3=at(100,100,62,k*60);var f=document.createElementNS(NS,"use");f.setAttribute("href","#fmn");f.setAttribute("width","26");f.setAttribute("height","26");f.setAttribute("x",(r3[0]-13).toFixed(1));f.setAttribute("y",(r3[1]-13).toFixed(1));ring.appendChild(f);}
+    }
+    var cols=["#c62d3f","#f2b40a","#5b93d1","#dd5f93","#3b9655","#f2b40a","#c62d3f"];
+    ["dr1","dr2","dr3"].forEach(function(id){var dr=document.getElementById(id);if(dr)cols.forEach(function(col){var e=document.createElement("i");e.style.background=col;dr.appendChild(e);});});
+    var els=[].slice.call(document.querySelectorAll(".reveal"));
+    if("IntersectionObserver" in window){var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{threshold:.14});els.forEach(function(el){io.observe(el);});}
+    else els.forEach(function(el){el.classList.add("in");});
+  })();
+</script>
+<script>
+  (function(){
+    var bar=document.getElementById("topbar"), prog=document.getElementById("progress");
+    var links=[].slice.call(document.querySelectorAll(".navdots a"));
+    var ids=links.map(function(a){return a.getAttribute("href").slice(1);});
+    function onScroll(){
+      var y=window.scrollY||document.documentElement.scrollTop;
+      var h=document.documentElement.scrollHeight-window.innerHeight;
+      prog.style.width=(h>0?Math.min(100,(y/h*100)):0)+"%";
+      if(y>420){bar.classList.add("show");}else{bar.classList.remove("show");}
+      var active=ids[0], mark=y+window.innerHeight*0.32;
+      ids.forEach(function(id){var el=document.getElementById(id); if(el && el.offsetTop<=mark) active=id;});
+      links.forEach(function(a){a.classList.toggle("active", a.getAttribute("href")==="#"+active);});
+    }
+    window.addEventListener("scroll", onScroll, {passive:true});
+    window.addEventListener("resize", onScroll);
+    onScroll();
+  })();
+</script>
+<script>
+(function(){
+  var STAR='<svg viewBox="0 0 48 48"><path d="M24 3 L29 18 L45 18 L32 28 L37 44 L24 34 L11 44 L16 28 L3 18 L19 18 Z" fill="#f0962a"/></svg>';
+  var STEPS=[
+    {cap:"Ki néz most?",choice:'<span class="wchip">👦 Bence · 2 év</span><span class="wchip">👧 Lilla · 4 év</span><span class="wchip">👨‍👩‍👧 Mindketten nézik</span>',stars:-1,
+     title:"1. Ki néz most?",what:"A szülő kiválasztja, ki néz: egy gyerek, vagy ha többen ülnek le, hogy mindenki nézi.",ch:"Menet közben, gyorsan kell dönteni — és ha többen néznek, több korhoz és igényhez kell igazodni.",sol:"Egyetlen koppintás. Többen nézésnél a rendszer a közös nevezőt keresi (legszigorúbb korhatár + közös szív/ész) — ezt külön ki kell dolgozni."},
+    {cap:"Szív vagy ész?",choice:'<span class="opt heart"><svg viewBox="0 0 48 48"><path d="M24 43C9 32 4 25 4 17A10.5 10.5 0 0 1 24 11A10.5 10.5 0 0 1 44 17C44 25 39 32 24 43Z" fill="#e8637a"/><path d="M13 17a7 7 0 0 1 7-6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" opacity=".45"/></svg></span><span class="opt mind"><svg viewBox="0 0 48 48" fill="rgba(63,157,141,.16)" stroke="#3f9d8d" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10a5 5 0 0 0-8 3 5 5 0 0 0-4 7 5 5 0 0 0 1 8 5 5 0 0 0 7 4 4 4 0 0 0 4 2V10Z"/><path d="M26 10a5 5 0 0 1 8 3 5 5 0 0 1 4 7 5 5 0 0 1-1 8 5 5 0 0 1-7 4 4 4 0 0 1-4 2V10Z"/><path d="M17 17c2 0 3 2 3 4M31 17c-2 0-3 2-3 4M17 28c2 0 4 1 4 3M31 28c-2 0-4 1-4 3" fill="none"/></svg></span>',stars:-1,
+     title:"2. Szív vagy ész?",what:"A szülő eldönti, mire van most szüksége a gyereknek.",ch:"Absztrakt műfaji kategóriát nehéz választani.",sol:"Egy kérdés, amit a szülő tud: most az együttérzésre vagy a gondolkodásra van szükség?"},
+    {cap:"Ajánlott mese",choice:'<div class="mesecard">Egy kedves mese<br><small>★ ★ ★ · rövid</small></div>',stars:-1,
+     title:"3. Korhoz illő mese",what:"A rendszer a korhoz és a választáshoz illő mesét kínálja, jó hosszban.",ch:"Mi való épp 0–3-nak, és meddig? Ha többen néznek, egyszerre több kornak kell megfelelni.",sol:"Kor-első szűrés és emberi besorolás; több gyereknél a legfiatalabbhoz igazított, de a nagyobbaknak is élvezhető mese — a besorolás egyik legnehezebb feladata."},
+    {cap:"Két mese, aztán fürdés",stars:3,
+     title:"4. Felkészítés",what:"A gyerek megtudja, meddig tart, és mi jön utána.",ch:"A kicsik nem értik a perceket.",sol:"Az idő nem szám, hanem fogyó csillagok — látható és konkrét."},
+    {cap:"Megy a mese…",stars:2,
+     title:"5. Visszaszámlálás",what:"A mese megy, a csillagok egyesével elalszanak.",ch:"A képernyőidő észrevétlenül elnyúlik.",sol:"Látható, kiszámítható fogyás — a vég előre látszik."},
+    {cap:"Nemsokára vége…",stars:1,
+     title:"6. Nemsokára vége",what:"Finom, nyugodt jelzés a vég közeledtével.",ch:"A hirtelen megszakítás sokk, és dackonfliktust szül.",sol:"Előre jelzett vég, mindig epizódhatárhoz igazítva."},
+    {cap:"Elfogytak a csillagok",sub:"Most te zárod le a mesét.",stars:0,
+     title:"7. A gyerek zárja le",what:"A mesét a gyerek maga zárja le — TV-n egy nagy gombbal, tableten a képernyőn.",ch:"A kikapcsolás a szülő–gyerek harc forrása.",sol:"A gyereké a döntés: a „velem történik” élményből „én csinálom” lesz."},
+    {cap:"",stars:0,button:true,reward:'<div class="rw">Szép volt! 🌟</div><div class="rw2">Jó éjt 🌙 · most jöhet a fürdés</div>',
+     title:"8. Jó éjt — a lezárás",what:"A gyerek megnyomja a gombot, kis nyugtató elismerést kap, és a rituálé átvezet a következő lépéshez.",ch:"Egy izgató jutalom felpörget lefekvés előtt; a hirtelen vég űrt hagy.",sol:"Meleg, csendes lezárás; a jutalom a leállásért jár. A vég hidat képez — nincs „következő rész”, nincs automatikus lejátszás."}
+  ];
+  var cur=0;
+  var g=function(id){return document.getElementById(id);};
+  var scrStars=g("scrStars"),scrCap=g("scrCap"),scrSub=g("scrSub"),scrChoice=g("scrChoice"),scrBtn=g("scrBtn"),scrReward=g("scrReward"),
+      stepnum=g("stepnum"),kdots=g("kdots"),expTitle=g("expTitle"),expWhat=g("expWhat"),expChall=g("expChall"),expSol=g("expSol"),
+      kprev=g("kprev"),knext=g("knext");
+  if(!scrStars) return;
+  for(var k=0;k<3;k++){var d=document.createElement("div");d.innerHTML=STAR;scrStars.appendChild(d.firstChild);}
+  var starEls=[].slice.call(scrStars.querySelectorAll("svg"));
+  STEPS.forEach(function(_,i){var b=document.createElement("button");b.type="button";b.setAttribute("aria-label","Lépés "+(i+1));b.addEventListener("click",function(){goto(i);});kdots.appendChild(b);});
+  var dotBtns=[].slice.call(kdots.querySelectorAll("button"));
+  function setStars(n){ if(n<0){scrStars.style.display="none";return;} scrStars.style.display="flex"; starEls.forEach(function(el,i){el.classList.toggle("dim", i>=n);}); }
+  function goto(i){
+    cur=Math.max(0,Math.min(STEPS.length-1,i)); var s=STEPS[cur];
+    stepnum.textContent=(cur+1)+" / "+STEPS.length;
+    dotBtns.forEach(function(b,j){b.classList.toggle("on",j===cur);});
+    scrCap.textContent=s.cap||""; scrCap.style.display=s.cap?"block":"none";
+    scrSub.textContent=s.sub||""; scrSub.style.display=s.sub?"block":"none";
+    scrChoice.innerHTML=s.choice||""; scrChoice.style.display=s.choice?"flex":"none";
+    scrBtn.hidden=!s.button; scrReward.hidden=true; scrReward.innerHTML="";
+    setStars(s.stars===undefined?-1:s.stars);
+    expTitle.textContent=s.title; expWhat.textContent=s.what; expChall.textContent=s.ch; expSol.textContent=s.sol;
+    kprev.disabled=cur===0; knext.disabled=cur===STEPS.length-1;
+  }
+  kprev.addEventListener("click",function(){goto(cur-1);});
+  knext.addEventListener("click",function(){goto(cur+1);});
+  scrBtn.addEventListener("click",function(){var s=STEPS[cur];scrBtn.hidden=true;scrCap.style.display="none";scrReward.innerHTML=s.reward||"";scrReward.hidden=false;});
+  goto(0);
+})();
+</script>
+<script>
+  (function(){
+    var f=document.getElementById("subform"), msg=document.getElementById("submsg");
+    if(!f) return;
+    f.addEventListener("submit",function(e){
+      e.preventDefault();
+      if(!f.checkValidity()){f.reportValidity();return;}
+      var body=new URLSearchParams(new FormData(f)).toString();
+      var btn=f.querySelector("button[type=submit]"); if(btn){btn.disabled=true;btn.textContent="Küldés…";}
+      fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:body})
+        .then(function(r){ if(!r.ok) throw 0;
+          f.innerHTML='<p style="font-weight:700;color:var(--zold-sotet);font-size:1.08rem;margin:0">Köszönjük a feliratkozást! 🌟<br><span style="font-weight:400;color:var(--muted);font-size:.92rem">Szólunk, amikor változik az oldal.</span></p>';
+          if(msg) msg.style.display="none";
+        })
+        .catch(function(){ if(btn){btn.disabled=false;btn.textContent="Feliratkozom";} if(msg){msg.textContent="Hiba történt — kérlek, próbáld újra kicsit később.";msg.style.color="var(--rozsa-sotet)";} });
+    });
+  })();
+  (function(){
+    var t=document.getElementById("navtoggle"),nav=document.getElementById("navdots");
+    if(!t||!nav)return;
+    t.addEventListener("click",function(){var o=nav.classList.toggle("open");t.setAttribute("aria-expanded",o?"true":"false");});
+    nav.addEventListener("click",function(e){if(e.target.closest("a")){nav.classList.remove("open");t.setAttribute("aria-expanded","false");}});
+  })();
+</script>
+</body>
+</html>
